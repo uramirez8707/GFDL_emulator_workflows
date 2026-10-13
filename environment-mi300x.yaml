@@ -1,0 +1,13 @@
+name: ace-emulator-env-mi300x
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+      - --extra-index-url https://download.pytorch.org/whl/rocm6.2
+      - torch
+      - torchvision
+      - torchaudio
+      - fme

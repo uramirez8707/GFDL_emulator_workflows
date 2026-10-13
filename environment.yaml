@@ -1,4 +1,4 @@
-name: ace-emulator-env
+name: ace-emulator-env-h100
 channels:
   - conda-forge
   - defaults
@@ -6,4 +6,7 @@ dependencies:
   - python=3.12
   - pip
   - pip:
+      - torch
+      - torchvision
+      - torchaudio
       - fme
