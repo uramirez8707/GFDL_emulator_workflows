@@ -8,16 +8,16 @@
 #SBATCH --gpus=mi300x:2
 #SBATCH --mem=256G
 #SBATCH --time=24:00:00
-#SBATCH --job-name=SamudrACE_training_SPEAR-01-A
+#SBATCH --job-name=SamudrACE_training_SPEAR-01-mi300x
 #SBATCH --mail-type=BEGIN,END,FAIL
 #SBATCH --mail-user=uriel.ramirez@noaa.gov
-#SBATCH --output=logs/SamudrACE_training_SPEAR-01-A.%j
+#SBATCH --output=logs/SamudrACE_training_SPEAR-01-mi300x.%j
 
 set -e
 
 JOB_CONFIG_DIR=`pwd`
 
-JOB_LABEL="SamudrACE_training-SPEAR-01-A"
+JOB_LABEL="SamudrACE_training-SPEAR-01-mi300x"
 
 # Directory where all the output is at
 BASE_DIR=/scratch4/GFDL/gfdlscr/Uriel.Ramirez/ACE_TRAINING_JOBS
