@@ -4,6 +4,10 @@ channels:
   - defaults
 dependencies:
   - python=3.12
+  - dask
+  - xarray
+  - zarr
+  - netcdf4
   - pip
   - pip:
       - torch
