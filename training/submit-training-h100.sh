@@ -22,27 +22,11 @@ JOB_LABEL="SamudrACE_training-SPEAR-01-h100"
 # Directory where all the output is at
 BASE_DIR=/scratch4/GFDL/gfdlscr/Uriel.Ramirez/ACE_TRAINING_JOBS
 WORKING_DIR="${BASE_DIR}/${JOB_LABEL}"
+WANDB_DATA_DIR=$WORKING_DIR/wandb
 
 # Configuration variables
 ################################
-
-# Number of epochs to run at a time
-NEPOCHS=1
-
-# Directory where the zarr datasets are created
-DATA_DIR=/scratch4/GFDL/gfdlscr/Uriel.Ramirez/archive_090926
-
-# Directory where the stats directory were created
-STATS_DIR=/scratch4/GFDL/gfdlscr/Uriel.Ramirez/DEV/ACE_TESTING/working_dir/test3
-
-# Set up the validation/training starts/ends
-TRAIN_START=1851-01-06
-TRAIN_END=1990-01-01
-VALIDATION_START=1990-01-06
-VALIDATION_END=2000-01-01
-
-# Directory where the wanb logs are dumped to
-WANDB_DATA_DIR=$WORKING_DIR/wandb
+source "../config/config.sh"
 
 ################################
 
@@ -61,7 +45,10 @@ mkdir -p "${WORKING_DIR}"
 cd "${WORKING_DIR}"
 
 # Create the configuration file to work from
-$JOB_CONFIG_DIR/create_yaml_config.sh $BASE_DIR $WORKING_DIR $DATA_DIR $STATS_DIR $TRAIN_START $TRAIN_END $VALIDATION_START $VALIDATION_END "SamudrACE-CM4-piControl"
+$JOB_CONFIG_DIR/create_yaml_config.sh \
+	$BASE_DIR $WORKING_DIR $DATA_DIR $STATS_DIR \
+	$TRAIN_START $TRAIN_END $VALIDATION_START $VALIDATION_END \
+	$JOB_LABEL $WAND_USERNAME $OCN_FILE $ATM_FILE
 
 echo "Finished creating the yaml_config to ${WORKING_DIR}"
 

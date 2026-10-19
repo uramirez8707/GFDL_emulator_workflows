@@ -11,6 +11,9 @@ TRAIN_END="$6"
 VALIDATION_START="$7"
 VALIDATION_END="$8"
 RUN_NAME="$9"
+WAND_USERNAME="${10}"
+OCN_FILE="${11}"
+ATM_FILE="${12}"
 
 cat <<EOF > "config.yaml"
 experiment_dir: ${WORKING_DIR}
@@ -25,7 +28,7 @@ logging:
   log_to_wandb: true
   log_to_file: true
   project: ${RUN_NAME}
-  entity: "uramirez8707-"
+  entity: ${WAND_USERNAME}
   wandb_dir_in_experiment_dir: true
 train_loader:
   batch_size: 2
@@ -35,7 +38,7 @@ train_loader:
     ocean:
       merge:
         - data_path: ${DATA_DIR}
-          file_pattern: 1851-2000_merged.ocean.ens_01_fixed.zarr
+          file_pattern: ${OCN_FILE}
           engine: zarr
           subset:
             start_time: "${TRAIN_START}"
@@ -43,7 +46,7 @@ train_loader:
     atmosphere:
       merge:
         - data_path: ${DATA_DIR}
-          file_pattern: 1851-2000_merged.atmos.ens_01.zarr
+          file_pattern: ${ATM_FILE}
           engine: zarr
           subset:
             start_time: "${TRAIN_START}"
@@ -57,7 +60,7 @@ validation:
       ocean:
         merge:
           - data_path: ${DATA_DIR}
-            file_pattern: 1851-2000_merged.ocean.ens_01_fixed.zarr
+            file_pattern: ${OCN_FILE}
             engine: zarr
             subset:
               start_time: "${VALIDATION_START}"
@@ -65,7 +68,7 @@ validation:
       atmosphere:
         merge:
           - data_path: ${DATA_DIR}
-            file_pattern: 1851-2000_merged.atmos.ens_01.zarr
+            file_pattern: ${ATM_FILE}
             engine: zarr
             subset:
               start_time: "${VALIDATION_START}"
