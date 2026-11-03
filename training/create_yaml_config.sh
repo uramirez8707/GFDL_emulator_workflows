@@ -171,8 +171,8 @@ stepper:
           normalization:
             network:
               fill_nans_on_normalize: true
-              global_means_path: ${STATS_DIR}/ocean/1851-2000_merged.ocean.ens_01/centering_patched.nc
-              global_stds_path: ${STATS_DIR}/ocean/1851-2000_merged.ocean.ens_01/scaling-full-field_patched.nc
+              global_means_path: ${STATS_DIR}/${OCN_FILE}/centering.nc
+              global_stds_path: ${STATS_DIR}/${OCN_FILE}/scaling-full-field.nc
           corrector:
             type: ocean_corrector
             config:
@@ -408,11 +408,11 @@ stepper:
           normalization:
             network:
               fill_nans_on_normalize: true
-              global_means_path: ${STATS_DIR}/atmos/1851-2000_merged.atmos.ens_01/centering_patched.nc
-              global_stds_path: ${STATS_DIR}/atmos/1851-2000_merged.atmos.ens_01/scaling-full-field_patched.nc
+              global_means_path: ${STATS_DIR}/${ATM_FILE}/centering.nc
+              global_stds_path: ${STATS_DIR}/${ATM_FILE}/scaling-full-field.nc
             residual:
-              global_means_path: ${STATS_DIR}/atmos/1851-2000_merged.atmos.ens_01/centering_patched.nc
-              global_stds_path: ${STATS_DIR}/atmos/1851-2000_merged.atmos.ens_01/scaling-residual_patched.nc
+              global_means_path: ${STATS_DIR}/${ATM_FILE}/centering.nc
+              global_stds_path: ${STATS_DIR}/${ATM_FILE}/scaling-residual.nc
           ocean:
             surface_temperature_name: surface_temperature
             ocean_fraction_name: ocean_fraction
