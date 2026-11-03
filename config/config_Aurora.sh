@@ -26,7 +26,8 @@ STATS_DIR=/flare/S2S-AI/Uriel.Ramirez/ACE_TRAINING_JOBS/Stats/Sample
 
 # Set up the validation/training starts/ends
 TRAIN_START=1941-01-06
-TRAIN_END=1941-10-31                                                                                           VALIDATION_START=1941-11-02
+TRAIN_END=1941-10-31
+VALIDATION_START=1941-11-02
 VALIDATION_END=1941-12-31
 
 ##################################
