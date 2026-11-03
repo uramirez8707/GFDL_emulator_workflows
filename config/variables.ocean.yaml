@@ -1,0 +1,76 @@
+ice_5daily_snap:
+  2d:
+    HI:
+    sea_ice_fraction:
+      rename: ocean_sea_ice_fraction
+
+ocean_5daily_snap:
+  coarsed:
+    z_i:
+      rename: idepth
+      plot: False
+    thetao:
+    so:
+  2d:
+    zos:
+    tos:
+      duplicate_name: sst
+
+ocean_5daily_velocties:
+  coarsed:
+    vo:
+    uo:
+
+land_static:
+  2d:
+    land_fraction:
+      plot: False
+
+fluxes_2d:
+  2d:
+    eastward_surface_wind_stress:
+      subsample: True
+      rename: tauuo
+      duplicate_name: eastward_surface_wind_stress
+    northward_surface_wind_stress:
+      subsample: True
+      rename: tauvo
+      duplicate_name: northward_surface_wind_stress
+    DLWRFsfc:
+      subsample: True
+    DSWRFsfc:
+      subsample: True
+    ULWRFsfc:
+      subsample: True
+    USWRFsfc:
+      subsample: True
+    surface_evaporation_rate:
+      rename: hflso
+      derive:
+        rename: hflso
+        scale_factor: 2.5e6
+        long_name: "Latent Heat Flux at the surface"
+        units: "W/m^2"
+        subsample: True
+    SHTFLsfc:
+      subsample: True
+      rename: hfsso
+      duplicate_name: SHTFLsfc
+    PRATEsfc:
+      subsample: True
+      rename: prlq
+      duplicate_name: PRATEsfc
+    surface_evaporation_rate:
+      subsample: True
+      rename: LHTFLsfc
+      derive:
+        rename: LHTFLsfc
+        scale_factor: 2.5e-6
+        long_name: "Latent Heat Flux at the surface"
+        units: "W/m^2"
+
+ocean_6hourly:
+  2d:
+    hfds:
+      subsample: True
+
