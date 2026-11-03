@@ -15,6 +15,22 @@ WAND_USERNAME="${10}"
 OCN_FILE="${11}"
 ATM_FILE="${12}"
 
+echo ""
+echo "---> Creating a yaml configuration with the following variables:"
+echo "BASE_DIR" "${BASE_DIR}"
+echo "WORKING_DIR" "${WORKING_DIR}"
+echo "DATA_DIR" "${DATA_DIR}"
+echo "STATS_DIR" "${STATS_DIR}"
+echo "TRAIN_START" "${TRAIN_START}"
+echo "TRAIN_END" "${TRAIN_END}"
+echo "VALIDATION_START" "${VALIDATION_START}"
+echo "VALIDATION_END" "${VALIDATION_END}"
+echo "RUN_NAME" "${RUN_NAME}"
+echo "WAND_USERNAME" "${WAND_USERNAME}"
+echo "OCN_FILE" "${OCN_FILE}"
+echo "ATM_FILE" "${ATM_FILE}"
+echo ""
+
 cat <<EOF > "config.yaml"
 experiment_dir: ${WORKING_DIR}
 save_checkpoint: true
@@ -31,14 +47,14 @@ logging:
   entity: ${WAND_USERNAME}
   wandb_dir_in_experiment_dir: true
 train_loader:
-  batch_size: 2
+  batch_size: 12
   num_data_workers: 1
   prefetch_factor: 1
   dataset:
     ocean:
       merge:
         - data_path: ${DATA_DIR}
-          file_pattern: ${OCN_FILE}
+          file_pattern: ${OCN_FILE}.zarr
           engine: zarr
           subset:
             start_time: "${TRAIN_START}"
@@ -46,21 +62,21 @@ train_loader:
     atmosphere:
       merge:
         - data_path: ${DATA_DIR}
-          file_pattern: ${ATM_FILE}
+          file_pattern: ${ATM_FILE}.zarr
           engine: zarr
           subset:
             start_time: "${TRAIN_START}"
             stop_time: "${TRAIN_END}"
 validation:
   loader:
-    batch_size: 2
+    batch_size: 12
     num_data_workers: 1
     prefetch_factor: 1
     dataset:
       ocean:
         merge:
           - data_path: ${DATA_DIR}
-            file_pattern: ${OCN_FILE}
+            file_pattern: ${OCN_FILE}.zarr
             engine: zarr
             subset:
               start_time: "${VALIDATION_START}"
@@ -68,7 +84,7 @@ validation:
       atmosphere:
         merge:
           - data_path: ${DATA_DIR}
-            file_pattern: ${ATM_FILE}
+            file_pattern: ${ATM_FILE}.zarr
             engine: zarr
             subset:
               start_time: "${VALIDATION_START}"
@@ -85,14 +101,14 @@ stepper_training:
   n_coupled_steps: 4
   ocean:
     parameter_init:
-      weights_path: "${BASE_DIR}/CHECKPOINTS/ocean_ckpt.tar"
+      weights_path: "${BASE_DIR}/SamudrACE_CM4/ocean_ckpt.tar"
     loss:
       type: MSE
     n_steps: 4
     loss_weight: 1.0
   atmosphere:
     parameter_init:
-      weights_path: "${BASE_DIR}/CHECKPOINTS/atmos_ckpt.tar"
+      weights_path: "${BASE_DIR}/SamudrACE_CM4/atmos_ckpt.tar"
     n_steps: 4
     loss:
       type: MSE
