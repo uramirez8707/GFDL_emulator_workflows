@@ -1,0 +1,85 @@
+fluxes_2d:
+  2d:
+    ULWRFsfc:
+    ULWRFtoa:
+    USWRFsfc:
+    USWRFtoa:
+    DLWRFsfc:
+      duplicate_name: downward_longwave_radiative_flux
+    DSWRFsfc:
+    DSWRFtoa:
+    eastward_surface_wind_stress:
+    northward_surface_wind_stress:
+    PRATEsfc:
+    SHTFLsfc:
+    total_energy:
+    total_frozen_precipitation_rate:
+    surface_evaporation_rate:
+      rename: LHTFLsfc
+      derive:
+        rename: LHTFLsfc
+        scale_factor: 2.5e-6
+        long_name: "Latent Heat Flux at the surface"
+        units: "W/m^2"
+
+full_state:
+  coarsed:
+    air_temperature:
+    eastward_wind:
+    northward_wind:
+    specific_total_water:
+    ak:
+      plot: False
+    bk:
+      plot: False
+  2d:
+    northward_wind_at_ten_meters:
+      rename: VGRD10m
+    eastward_wind_at_ten_meters:
+      rename: UGRD10m
+    specific_humidity_at_two_meters:
+      rename: Q2m
+    h500:
+    HGTsfc:
+      is_static: True
+    PRESsfc:
+    PRMSL:
+    surface_temperature:
+    air_temperature_at_two_meters:
+      rename: TMP2m
+    TMP850:
+
+ice_6hourly_snap:
+  2d:
+    sea_ice_fraction:
+
+land_static:
+  2d:
+    land_fraction:
+      is_static: True
+    glac_fraction:
+      is_static: True
+    soil_fraction:
+      is_static: True
+    lake_fraction:
+      is_static: True
+    ocean_fraction:
+      is_static: True
+
+full_state.total_water_path:
+  2d:
+    total_water_path:
+    tendency_of_total_water_path:
+    tendency_of_total_water_path_due_to_advection:
+
+heat_fluxes:
+  2d:
+    total_precipitation_heat_flux:
+    total_vapor_sensible_heat_flux:
+
+scalar:
+  2d:
+    carbon_dioxide:
+      plot: False
+      duplicate_name: global_mean_co2
+

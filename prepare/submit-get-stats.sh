@@ -1,8 +1,8 @@
 #!/bin/bash
 #SBATCH --job-name=spear_get_stats
-#SBATCH --account=gfdlport
-#SBATCH --partition=u1-compute
-#SBATCH --time=04:00:00
+#SBATCH --account=gfdl_f
+#SBATCH --partition=batch
+#SBATCH --time=16:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
@@ -13,18 +13,17 @@
 
 set -e
 
-module load rdhpcs-conda/25.11.0
-conda activate ace-emulator-env-h100
-
 # Configuration variables
 ################################
-source "../config/config.sh"
+source "../config/config_analysis.sh"
+
+mkdir -p ${STATS_OUT}
 cd ${STATS_OUT}
 
 # Get statistics on the atmosphere file
 ################################
 cat <<EOF > "spear_atmos_config.yaml"
-data_output_directory: "${DATA_DIR}"
+data_output_directory: "${DATA_DIR}/merged"
 
 runs:
   "${ATM_FILE}": "atmos_3d"
@@ -40,7 +39,7 @@ python ${ACE_REPO_DIR}/scripts/data_process/get_stats.py spear_atmos_config.yaml
 # Get statistics on the ocean file
 ################################
 cat <<EOF > "spear_ocean_config.yaml"
-data_output_directory: "${DATA_DIR}"
+data_output_directory: "${DATA_DIR}/merged"
 
 runs:
   "${OCN_FILE}": "ocean_3d"
