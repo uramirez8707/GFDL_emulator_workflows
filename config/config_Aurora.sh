@@ -12,30 +12,18 @@ NEPOCHS=1
 NUM_TILES=12
 
 # Directory where the zarr datasets are created
-DATA_DIR=/flare/S2S-AI/Uriel.Ramirez/ACE_TRAINING_JOBS/Datasets
-ATM_FILE="19410101.atmos.ens_01"
-OCN_FILE="19410101.ocean.ens_01"
-
-##################################
-# ATM_FILE="1851-2000_merged.atmos.ens_01"
-# OCN_FILE="1851-2000_merged.ocean.ens_01"
-##################################
+DATA_DIR=/flare/S2S-AI/Uriel.Ramirez/ACE_TRAINING_JOBS/Datasets/SPEAR_LO
+ATM_FILE="1851-2000_merged.atmos.ens_01"
+OCN_FILE="1851-2000_merged.ocean.ens_01"
 
 # Directory where the stats directory were created
-STATS_DIR=/flare/S2S-AI/Uriel.Ramirez/ACE_TRAINING_JOBS/Stats/Sample
+STATS_DIR=/flare/S2S-AI/Uriel.Ramirez/ACE_TRAINING_JOBS/Stats/SPEAR_LO
 
 # Set up the validation/training starts/ends
-TRAIN_START=1941-01-06
-TRAIN_END=1941-10-31
-VALIDATION_START=1941-11-02
-VALIDATION_END=1941-12-31
-
-##################################
-# TRAIN_START=1851-01-06
-# TRAIN_END=1990-01-01
-# VALIDATION_START=1990-01-06
-# VALIDATION_END=2000-01-01
-##################################
+TRAIN_START=1851-01-06
+TRAIN_END=1989-12-31
+VALIDATION_START=1990-01-01
+VALIDATION_END=1999-12-31
 
 # WAND Configuration
 # TODO Aurora's compute nodes have access to the internet so this can probably

@@ -1,8 +1,8 @@
 #!/bin/bash
 #PBS -A S2S-AI
-#PBS -q debug
+#PBS -q capacity
 #PBS -l select=1
-#PBS -l walltime=00:10:00
+#PBS -l walltime=06:00:00
 #PBS -l filesystems=home:flare
 #PBS -N SamudrACE_training_SPEAR-01-intel
 #PBS -m bea
